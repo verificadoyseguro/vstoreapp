@@ -1,0 +1,31 @@
+User-agent: *
+Disallow: /.well-known/
+Disallow: /.htaccess
+Disallow: /SECURITY.md
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /*.config
+Disallow: /*.env
+Disallow: /*.sql
+Disallow: /*.log
+Disallow: /*.bak
+Disallow: /*.backup
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Allow: /index.html
+Allow: /logo.png
+Allow: /verificadoyseguro.apk
+
+Sitemap: https://verificadoyseguro.github.io/vstoreapp/sitemap.xml

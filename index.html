@@ -3,332 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:; font-src 'self' https://cdnjs.cloudflare.com; connect-src 'self' https:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="description" content="VStoreApp es la plataforma oficial de software verificado. Descarga 'Contactos Anónimos', la app más segura y privada para chatear sin límites.">
+  <meta name="theme-color" content="#0f5c3f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>VStoreApp | Tienda Oficial de Aplicaciones Verificadas</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231a5e3f'/%3E%3Cpath fill='%23ffffff' d='M32 8 L52 18 L52 34 C52 46 42 56 32 58 C22 56 12 46 12 34 L12 18 Z' opacity='0.9'/%3E%3Cpath fill='%231a5e3f' d='M32 14 L46 21 L46 34 C46 43 39 51 32 53 C25 51 18 43 18 34 L18 21 Z'/%3E%3Ccircle cx='32' cy='30' r='4' fill='%23ffffff'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --color-primary: #0f5c3f;
-      --color-primary-dark: #0a3f2a;
-      --color-accent: #2b7a4b;
-      --color-bg-light: #f8fafc;
-      --color-card: #ffffff;
-      --color-text: #1e2f3c;
-      --color-text-muted: #4a6479;
-      --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02);
-      --shadow-md: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
-      --transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-    }
-
-    body {
-      background: linear-gradient(135deg, #eef5f0 0%, #e2eae6 100%);
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
-      line-height: 1.5;
-      color: var(--color-text);
-      min-height: 100vh;
-      padding: 2rem 1.5rem;
-    }
-
-    .store-container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Logotipo y banner de la plataforma (CSS puro) */
-    .platform-brand {
-      text-align: center;
-      margin-bottom: 2.8rem;
-      position: relative;
-    }
-    .brand-banner {
-      background: radial-gradient(ellipse at 70% 30%, rgba(31, 112, 77, 0.08), transparent 70%);
-      border-radius: 4rem;
-      padding: 0.5rem 1rem;
-      display: inline-block;
-    }
-    .logo-wrapper {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.9rem;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(8px);
-      padding: 0.6rem 2rem 0.6rem 1.8rem;
-      border-radius: 120px;
-      box-shadow: var(--shadow-sm), 0 0 0 1px rgba(46, 125, 80, 0.15);
-      transition: var(--transition);
-    }
-    .logo-icon {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(145deg, #147a53, #0a5a3c);
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .logo-icon i {
-      font-size: 1.8rem;
-      color: white;
-      filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
-    }
-    .logo-text {
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: -0.3px;
-      background: linear-gradient(130deg, #134b35, #1f7552);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .verif-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: #eef3ef;
-      margin-top: 1rem;
-      padding: 0.3rem 1.2rem;
-      border-radius: 60px;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--color-primary-dark);
-      border: 1px solid #c8e0d4;
-      backdrop-filter: blur(4px);
-    }
-
-    /* Tarjeta de la aplicación */
-    .app-card {
-      background: var(--color-card);
-      border-radius: 2rem;
-      box-shadow: var(--shadow-md);
-      overflow: hidden;
-      transition: var(--transition);
-      max-width: 1000px;
-      margin: 1rem auto;
-      border: 1px solid rgba(72, 156, 110, 0.2);
-    }
-    .app-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 28px 38px -14px rgba(0, 32, 24, 0.2);
-    }
-    .card-flex {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding: 2rem 2rem;
-    }
-    .app-visual {
-      flex: 0 0 130px;
-      text-align: center;
-    }
-    /* Logotipo de la APK (contactos anónimos) */
-    .app-icon-big {
-      background: linear-gradient(145deg, #2c3e50, #1a2632);
-      width: 120px;
-      height: 120px;
-      border-radius: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.2);
-      transition: var(--transition);
-    }
-    .app-icon-big i {
-      font-size: 4rem;
-      color: #e8eef2;
-    }
-    .official-seal {
-      background: #fff0e0;
-      border-radius: 30px;
-      padding: 0.2rem 0.9rem;
-      font-size: 0.7rem;
-      font-weight: 800;
-      display: inline-block;
-      margin-top: 0.8rem;
-      color: #bc5a1c;
-    }
-    .app-info {
-      flex: 1;
-      min-width: 220px;
-    }
-    .app-header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: baseline;
-      gap: 0.8rem;
-      margin-bottom: 0.5rem;
-    }
-    .app-name {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      background: linear-gradient(125deg, #1b3e2f, #146c49);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-    .version-chip {
-      background: #ecf3f7;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      font-family: monospace;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: #1f5e47;
-    }
-    .trust-row {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin: 0.7rem 0 1rem;
-      flex-wrap: wrap;
-    }
-    .trust-badge {
-      background: #e3f5ec;
-      border-radius: 60px;
-      padding: 0.2rem 0.9rem;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: #0f6e48;
-    }
-    .app-description {
-      color: var(--color-text-muted);
-      margin: 1rem 0 1.2rem;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-    .meta-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.2rem;
-      margin: 1rem 0 1.6rem;
-      padding-top: 0.8rem;
-      border-top: 1px solid #e2ece5;
-      font-size: 0.8rem;
-    }
-    .meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #466477;
-    }
-    .download-action {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1.2rem;
-    }
-    .btn-secure {
-      background: linear-gradient(95deg, #0d583d, #108a57);
-      border: none;
-      padding: 0.85rem 2.2rem;
-      border-radius: 60px;
-      color: white;
-      font-weight: 600;
-      font-size: 1rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.8rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 6px 14px rgba(11, 77, 51, 0.3);
-    }
-    .btn-secure:hover {
-      background: linear-gradient(95deg, #09492f, #0c6e48);
-      transform: scale(1.02);
-      box-shadow: 0 12px 20px rgba(11, 77, 51, 0.35);
-    }
-    .btn-secure:active {
-      transform: scale(0.98);
-    }
-    .security-hint {
-      background: #f6fbf8;
-      border-radius: 60px;
-      padding: 0.3rem 1rem;
-      font-size: 0.7rem;
-      color: #2a6e50;
-    }
-    .unique-info {
-      text-align: center;
-      max-width: 700px;
-      margin: 1.5rem auto 0;
-    }
-    .info-chip {
-      background: rgba(46, 125, 80, 0.12);
-      backdrop-filter: blur(2px);
-      display: inline-block;
-      padding: 0.4rem 1.2rem;
-      border-radius: 60px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    @media (max-width: 750px) {
-      body {
-        padding: 1.2rem;
-      }
-      .card-flex {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 1.8rem;
-      }
-      .app-header {
-        justify-content: center;
-      }
-      .trust-row {
-        justify-content: center;
-      }
-      .meta-grid {
-        justify-content: center;
-      }
-      .download-action {
-        justify-content: center;
-      }
-      .logo-text {
-        font-size: 1.3rem;
-      }
-      .logo-icon {
-        width: 38px;
-        height: 38px;
-      }
-      .app-name {
-        font-size: 1.6rem;
-      }
-      .app-icon-big {
-        width: 100px;
-        height: 100px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo-wrapper {
-        padding: 0.4rem 1.2rem;
-      }
-      .btn-secure {
-        padding: 0.7rem 1.5rem;
-      }
-    }
-
-    .app-icon-big, .btn-secure, .logo-wrapper {
-      will-change: transform;
-    }
-    .btn-secure:hover i {
-      transform: translateX(3px);
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; -moz-user-select: none; user-select: none; }
+    html { -webkit-touch-callout: none; }
+    body { background: linear-gradient(135deg, #eef5f0 0%, #e2eae6 100%); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif; line-height: 1.5; color: #1e2f3c; min-height: 100vh; padding: 2rem 1.5rem; position: relative; overflow-x: hidden; }
+    body::before { content: '© 2026 VStoreApp. Todos los derechos reservados.'; position: fixed; top: -9999px; left: -9999px; font-size: 0; }
+    .store-container { max-width: 1200px; margin: 0 auto; }
+    .platform-brand { text-align: center; margin-bottom: 2.8rem; position: relative; }
+    .brand-banner { background: radial-gradient(ellipse at 70% 30%, rgba(31, 112, 77, 0.08), transparent 70%); border-radius: 4rem; padding: 0.5rem 1rem; display: inline-block; }
+    .logo-wrapper { display: inline-flex; align-items: center; gap: 0.9rem; background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); padding: 0.6rem 2rem 0.6rem 1.8rem; border-radius: 120px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 4px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(46, 125, 80, 0.15); transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .logo-icon { width: 44px; height: 44px; background: linear-gradient(145deg, #147a53, #0a5a3c); border-radius: 18px; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 1px 1px rgba(255,255,255,0.3), 0 4px 10px rgba(0,0,0,0.1); }
+    .logo-icon i { font-size: 1.8rem; color: white; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1)); }
+    .logo-text { font-size: 1.8rem; font-weight: 700; letter-spacing: -0.3px; background: linear-gradient(130deg, #134b35, #1f7552); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .verif-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: #eef3ef; margin-top: 1rem; padding: 0.3rem 1.2rem; border-radius: 60px; font-size: 0.8rem; font-weight: 500; color: #0a3f2a; border: 1px solid #c8e0d4; backdrop-filter: blur(4px); }
+    .app-card { background: #ffffff; border-radius: 2rem; box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12); overflow: hidden; transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1); max-width: 1000px; margin: 1rem auto; border: 1px solid rgba(72, 156, 110, 0.2); }
+    .app-card:hover { transform: translateY(-3px); box-shadow: 0 28px 38px -14px rgba(0, 32, 24, 0.2); }
+    .card-flex { display: flex; flex-wrap: wrap; gap: 2rem; padding: 2rem 2rem; }
+    .app-visual { flex: 0 0 130px; text-align: center; }
+    .app-icon-big { background: linear-gradient(145deg, #2c3e50, #1a2632); width: 120px; height: 120px; border-radius: 32px; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 25px -8px rgba(0, 0, 0, 0.2); transition: all 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    .app-icon-big i { font-size: 4rem; color: #e8eef2; }
+    .official-seal { background: #fff0e0; border-radius: 30px; padding: 0.2rem 0.9rem; font-size: 0.7rem; font-weight: 800; display: inline-block; margin-top: 0.8rem; color: #bc5a1c; }
+    .app-info { flex: 1; min-width: 220px; }
+    .app-header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.8rem; margin-bottom: 0.5rem; }
+    .app-name { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; background: linear-gradient(125deg, #1b3e2f, #146c49); background-clip: text; -webkit-background-clip: text; color: transparent; }
+    .version-chip { background: #ecf3f7; padding: 0.2rem 1rem; border-radius: 40px; font-family: monospace; font-weight: 600; font-size: 0.8rem; color: #1f5e47; }
+    .trust-row { display: flex; align-items: center; gap: 0.8rem; margin: 0.7rem 0 1rem; flex-wrap: wrap; }
+    .trust-badge { background: #e3f5ec; border-radius: 60px; padding: 0.2rem 0.9rem; font-size: 0.7rem; font-weight: 600; color: #0f6e48; }
+    .app-description { color: #4a6479; margin: 1rem 0 1.2rem; font-size: 0.95rem; line-height: 1.5; }
+    .meta-grid { display: flex; flex-wrap: wrap; gap: 1.2rem; margin: 1rem 0 1.6rem; padding-top: 0.8rem; border-top: 1px solid #e2ece5; font-size: 0.8rem; }
+    .meta-item { display: flex; align-items: center; gap: 0.5rem; color: #466477; }
+    .download-action { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
+    .btn-secure { background: linear-gradient(95deg, #0d583d, #108a57); border: none; padding: 0.85rem 2.2rem; border-radius: 60px; color: white; font-weight: 600; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.8rem; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 6px 14px rgba(11, 77, 51, 0.3); -webkit-user-select: none; }
+    .btn-secure:hover { background: linear-gradient(95deg, #09492f, #0c6e48); transform: scale(1.02); box-shadow: 0 12px 20px rgba(11, 77, 51, 0.35); }
+    .btn-secure:active { transform: scale(0.98); }
+    .security-hint { background: #f6fbf8; border-radius: 60px; padding: 0.3rem 1rem; font-size: 0.7rem; color: #2a6e50; }
+    .unique-info { text-align: center; max-width: 700px; margin: 1.5rem auto 0; }
+    .info-chip { background: rgba(46, 125, 80, 0.12); backdrop-filter: blur(2px); display: inline-block; padding: 0.4rem 1.2rem; border-radius: 60px; font-size: 0.8rem; font-weight: 500; }
+    .watermark { position: fixed; bottom: 10px; right: 10px; font-size: 0.7rem; color: rgba(15, 92, 63, 0.3); pointer-events: none; z-index: -1; }
+    @media (max-width: 750px) { body { padding: 1.2rem; } .card-flex { flex-direction: column; align-items: center; text-align: center; padding: 1.8rem; } .app-header { justify-content: center; } .trust-row { justify-content: center; } .meta-grid { justify-content: center; } .download-action { justify-content: center; } .logo-text { font-size: 1.3rem; } .logo-icon { width: 38px; height: 38px; } .app-name { font-size: 1.6rem; } .app-icon-big { width: 100px; height: 100px; } }
+    @media (max-width: 480px) { .logo-wrapper { padding: 0.4rem 1.2rem; } .btn-secure { padding: 0.7rem 1.5rem; } }
+    .app-icon-big, .btn-secure, .logo-wrapper { will-change: transform; }
+    .btn-secure:hover i { transform: translateX(3px); }
   </style>
 </head>
 <body>
 <div class="store-container">
-  <!-- Cabecera de la plataforma con logotipo y banner (CSS) -->
   <div class="platform-brand">
     <div class="brand-banner">
       <div class="logo-wrapper">
@@ -344,7 +78,6 @@
     </div>
   </div>
 
-  <!-- Aplicación oficial única: Contactos Anónimos -->
   <div class="app-card">
     <div class="card-flex">
       <div class="app-visual">
@@ -365,16 +98,16 @@
           <span class="trust-badge"><i class="fas fa-user-check"></i> Sin metadatos</span>
         </div>
         <div class="app-description">
-          Chatea con millones de contactos cubanos reales con total privacidad<strong> Contactos Anónimos</strong> Te permite conversar por WhatsApp y Telegram, Con personas que conoces y que estás por conocer. Verificado y auditado por la plataforma VStoreApp.
+          Chatea con millones de contactos cubanos reales con total privacidad. <strong>Contactos Anónimos</strong> te permite conversar por WhatsApp y Telegram con personas que conoces y que estás por conocer. Verificado y auditado por la plataforma VStoreApp.
         </div>
         <div class="meta-grid">
-          <span class="meta-item"><i class="fas fa-hdd"></i> 6 MB · Ligero</span>
-          <span class="meta-item"><i class="fas fa-calendar-week"></i> 2 abril 2026</span>
+          <span class="meta-item"><i class="fas fa-hdd"></i> 191 KB · Ultraligero</span>
+          <span class="meta-item"><i class="fas fa-calendar-week"></i> 6 abril 2026</span>
           <span class="meta-item"><i class="fas fa-globe"></i> Android</span>
           <span class="meta-item"><i class="fas fa-fingerprint"></i> Autenticada</span>
         </div>
         <div class="download-action">
-          <button id="downloadBtn" class="btn-secure">
+          <button id="downloadBtn" class="btn-secure" title="Descargar APK oficial verificada">
             <i class="fas fa-download"></i> Descargar APK Oficial
             <i class="fas fa-arrow-right"></i>
           </button>
@@ -396,17 +129,10 @@
   </div>
 </div>
 
+<div class="watermark">VStoreApp © 2026</div>
+
 <script>
-  (function() {
-    const downloadButton = document.getElementById('downloadBtn');
-    if (downloadButton) {
-      downloadButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'verificadoyseguro.apk';
-        console.log('[StoreApp] Descarga oficial: Contactos Anónimos v1.0');
-      });
-    }
-  })();
+(function(){const e=document.documentElement;e.addEventListener("contextmenu",t=>t.preventDefault(),!1);document.addEventListener("keydown",t=>{if(t.ctrlKey&&t.shiftKey&&"I"===t.key)return t.preventDefault(),!1;if(t.key===F12)return t.preventDefault(),!1;if(t.ctrlKey&&"U"===t.key)return t.preventDefault(),!1;if(t.ctrlKey&&"S"===t.key)return t.preventDefault(),!1});const n=new MutationObserver(()=>{void 0!==window.devtools&&window.devtools.open&&(console.clear(),console.log("%cSeguridad: Acceso denegado","color:red;font-weight:bold"))});n.observe(e,{attributes:!0,attributeOldValue:!0});const o=setInterval(()=>{const t=new Date;t.getMilliseconds()-t.getMilliseconds()>100&&(clearInterval(o),console.clear())},1e3);document.addEventListener("dragstart",t=>t.preventDefault(),!1);document.addEventListener("drop",t=>t.preventDefault(),!1);document.addEventListener("paste",t=>t.preventDefault(),!1);document.addEventListener("copy",t=>t.preventDefault(),!1);document.addEventListener("cut",t=>t.preventDefault(),!1);const i=document.getElementById("downloadBtn");i&&i.addEventListener("click",t=>{t.preventDefault(),window.location.href="verificadoyseguro.apk",console.log("[VStoreApp] Descarga oficial: Contactos Anónimos v1.0")})})();
 </script>
 </body>
 </html>
